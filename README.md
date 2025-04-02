@@ -1,4 +1,4 @@
-# ❤️ SOCIALITEC - GESTIÓN DEL SERVICIO SOCIAL
+# ❤️ SocialITEC - Gestión del servicio social
 
 SocialITEC es una plataforma moderna que simplifica la gestión y manejo de documentos del Servicio Social en el Instituto Tecnológico de León.
 
@@ -25,7 +25,7 @@ SocialITEC es una plataforma moderna que simplifica la gestión y manejo de docu
    git clone https://github.com/Creator-DevOps/socialitec-backend.git
    ```
 
-2. Navega al directorio del proyecto:
+2. Navega al directorio del proyecto
 
    ```bash
    cd socialitec-backend/app
@@ -71,7 +71,7 @@ AWS_REGION=tu_region
 
 ## 🗄️ Base de Datos
 
-La base de datos se encuentra dentro de una instancia de EC2
+La base de datos se encuentra dentro de un EC2
 
 ## 🚀 Ejecución
 
