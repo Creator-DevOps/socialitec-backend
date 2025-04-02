@@ -71,7 +71,7 @@ AWS_REGION=tu_region
 
 ## 🗄️ Base de Datos
 
-La base de datos se encuentra dentro de un EC2
+La base de datos se encuentra dentro de un EC2.
 
 ## 🚀 Ejecución
 
