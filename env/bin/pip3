@@ -1,4 +1,4 @@
-#!/home/ubuntu/socialitec-backend/env/bin/python3
+#!/mnt/c/Users/busta/Escritorio/PROYECTOS/SOCIALITEC/socialitec-backend/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
