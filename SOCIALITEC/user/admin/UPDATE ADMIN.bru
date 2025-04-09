@@ -1,0 +1,22 @@
+meta {
+  name: UPDATE ADMIN
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{path}}/admins/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Eduardo Bustamante",
+    "email": "lalo@itlleon.edu.mx",
+    "password": "Admin123!",
+    "user_type": 0,
+    "position": "Coordinador General"
+  }
+  
+}
