@@ -4,9 +4,15 @@ env/
 # Ignorar variables de entorno privadas
 .env
 
+.env.*
+
+instance/
 # Ignorar archivos compilados de Python
 __pycache__/
 *.pyc
 
 # Ignorar archivos de log
 *.log
+
+*.sqlite3
+*.sql

@@ -1,0 +1,16 @@
+meta {
+  name: GET ADMINS PAGINATED
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{path}}/admins/?page=2&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 2
+  limit: 10
+}
