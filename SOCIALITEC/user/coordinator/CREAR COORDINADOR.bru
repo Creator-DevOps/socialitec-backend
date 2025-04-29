@@ -1,0 +1,21 @@
+meta {
+  name: CREAR COORDINADOR
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{path}}/coordinators
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Emanuel Perez Hernandez",
+    "email": "perez@itl.edu.mx",
+    "password": "coordinator123",
+    "departament": "Departamento de servicio Social"
+  }
+  
+}

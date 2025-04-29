@@ -1,0 +1,24 @@
+meta {
+  name: CREAR PROGRAM
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{path}}/programs
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "institution_id": 3,
+    "program_name": "Servicio Social Comunitariso",
+    "description": "Programa para apoyo comunitario",
+    "activities": "Brindar asistencia social",
+    "supervisor_name": "Dra. Laura Pérez",
+    "supervisor_phone": "4779988776",
+    "supervisor_email": "laura.perez@institucion.com"
+  }
+  
+}

@@ -1,0 +1,25 @@
+meta {
+  name: CREAR INSTITUTION
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{path}}/institutions
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "institution_name": "Hospital General Leóna",
+    "description": "Hospital de alta especialidades",
+    "phone": "4771234567",
+    "email": "hospitald2@leon.gob.mx",
+    "street": "Boulevard Insurgentes",
+    "number": "120",
+    "neighborhood": "Centro",
+    "postal_code": "37000"
+  }
+  
+}

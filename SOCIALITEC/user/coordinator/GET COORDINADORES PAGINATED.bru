@@ -1,16 +1,16 @@
 meta {
-  name: GET ADMINS PAGINATED
+  name: GET COORDINADORES PAGINATED
   type: http
   seq: 6
 }
 
 get {
-  url: {{path}}/admins/?page=1&limit=10
+  url: {{path}}/coordinators/?page=2&limit=10&
   body: none
   auth: inherit
 }
 
 params:query {
-  page: 1
+  page: 2
   limit: 10
 }

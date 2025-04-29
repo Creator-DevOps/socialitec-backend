@@ -1,0 +1,22 @@
+# Ignorar entornos y variables de entorno
+env/
+venv/
+.env
+.env.*
+.env*
+
+# Ignorar caches y compilados
+__pycache__/
+*.py[cod]
+*.log
+
+# Git y metadatos
+.git
+.gitignore
+
+# Migraciones
+migrations/
+
+# Archivos temporales de IDE/SO
+.vscode/
+.DS_Store

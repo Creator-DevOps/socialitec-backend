@@ -1,0 +1,13 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  web:
+    build: .
+    image: socialitec-api:latest
+    container_name: socialitec_api
+    ports:
+      - "5000:5000"      # expone el puerto 5000 del contenedor al host
+    env_file:
+      - .env            
+    restart: unless-stopped

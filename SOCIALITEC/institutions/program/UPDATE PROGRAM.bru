@@ -1,0 +1,22 @@
+meta {
+  name: UPDATE PROGRAM
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{path}}/programs/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "program_name": "Servicio Social Comunitario I",
+    "description": "Programa para apoyo comunitario",
+    "activities": "Brindar asistencia social",
+    "supervisor_name": "Dra. Laura Pérez",
+    "supervisor_phone": "4779988776",
+    "supervisor_email": "laura.perez@institucion.com"
+  }
+}
