@@ -3,16 +3,25 @@ from app.models.user.admin import Admin
 from app.extensions import db
 from werkzeug.security import generate_password_hash
 from datetime import datetime
-
+from sqlalchemy import or_
 #Función para obtener todos los administradores
 def get_all_admins():
     admins = Admin.query.filter(Admin.deleted_at == None).all()
     return [format_admin(a) for a in admins]
 
 # Función para obtener administradores paginados
-def get_admins_paginated(page=1, limit=10):
+def get_admins_paginated(page=1, limit=10, search_query= None):
     try:
-        query = Admin.query.filter(Admin.deleted_at == None)
+        query = Admin.query.join(User).filter(Admin.deleted_at == None)
+        
+        if search_query:
+            query = query.filter(
+                or_(
+                    User.name.ilike(f"%{search_query}%"),
+                    User.institutional_email.ilike(f"%{search_query}%")
+                )
+            )
+
         total = query.count()
 
         admins = query.offset((page - 1) * limit).limit(limit).all()
@@ -22,7 +31,7 @@ def get_admins_paginated(page=1, limit=10):
             "total": total,
             "page": page,
             "limit": limit,
-            "pages": (total + limit - 1) // limit  # Redondeo hacia arriba
+            "pages": (total + limit - 1) // limit 
         }
     except Exception as e:
         raise Exception(f"Error al obtener admins paginados: {str(e)}")
@@ -39,6 +48,11 @@ def create_admin(data):
         email = data["email"]
         password = generate_password_hash(data["password"])
         position = data.get("position", "Administrador")
+
+        # Verificar si ya existe un usuario con ese correo
+        existing_user = User.query.filter_by(institutional_email=email, deleted_at=None).first()
+        if existing_user:
+            raise Exception("Ya existe un administrador con ese correo institucional.")
 
         # Crear usuario base
         user = User(
@@ -74,8 +88,21 @@ def update_admin(user_id, data):
         return None
 
     try:
+        new_email = data.get("email")
+
+        if new_email and new_email != user.institutional_email:
+            # Verificar si otro usuario ya tiene ese correo
+            existing_user = User.query.filter(
+                User.institutional_email == new_email,
+                User.user_id != user_id,
+                User.deleted_at == None
+            ).first()
+            if existing_user:
+                raise Exception("Ya existe un administrador con ese correo institucional.")
+
         user.name = data.get("name", user.name)
-        user.institutional_email = data.get("email", user.institutional_email)
+        if new_email:
+            user.institutional_email = new_email
         if "password" in data:
             user.password = generate_password_hash(data["password"])
         admin.position = data.get("position", admin.position)
@@ -88,6 +115,7 @@ def update_admin(user_id, data):
     except Exception as e:
         db.session.rollback()
         raise Exception(f"Error al actualizar admin: {str(e)}")
+
 
 
 #Función para eliminar un administrador
@@ -108,7 +136,7 @@ def delete_admin(user_id):
         raise Exception(f"Error al eliminar admin: {str(e)}")
 
 
-#Función para formatear un administrador a json
+#Función
 def format_admin(admin):
     if not admin:
         return None

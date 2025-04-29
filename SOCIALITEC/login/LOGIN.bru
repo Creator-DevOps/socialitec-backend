@@ -1,0 +1,18 @@
+meta {
+  name: LOGIN
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{path}}/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "ana.torres@itl.edu.mx",
+    "password": "coordinator1234"
+  }
+}

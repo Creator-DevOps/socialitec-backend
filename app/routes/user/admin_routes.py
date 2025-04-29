@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required
+from app.utils.auth import jwt_required
 from app.services.user.admin_services import (
     get_all_admins,
     get_admin_by_id,
@@ -21,14 +21,16 @@ admin_routes = Blueprint("admin", __name__)
 
 #Ruta para obtener todos los administradores
 @admin_routes.route("/", methods=["GET"])
+@jwt_required
 def get_admins():
     try:
         # Lee los parámetros si vienen
         page = request.args.get("page", type=int)
         limit = request.args.get("limit", type=int)
+        query  = request.args.get("query", default=None, type=str)
 
         if page and limit:
-            result = get_admins_paginated(page, limit)
+            result = get_admins_paginated(page, limit, search_query=query)
         else:
             admins = get_all_admins()
             result = {
@@ -50,6 +52,7 @@ def get_admins():
 
 #Obtener un administrador por su id
 @admin_routes.route("/<int:user_id>", methods=["GET"])
+@jwt_required
 def get_admin(user_id):
     try:
         admin = get_admin_by_id(user_id)
@@ -61,6 +64,7 @@ def get_admin(user_id):
 
 #Crear a un nuevo administrador
 @admin_routes.route("/", methods=["POST"])
+@jwt_required
 def create_admin_route():
     data = request.get_json()
     required = ["name", "email", "password", "position"]
@@ -77,6 +81,7 @@ def create_admin_route():
 
 #Actualziar administrador
 @admin_routes.route("/<int:user_id>", methods=["PUT"])
+@jwt_required
 def update_admin_route(user_id):
     data = request.get_json()
     try:
@@ -89,7 +94,9 @@ def update_admin_route(user_id):
 
 
 #Eliminar administrador
+
 @admin_routes.route("/<int:user_id>", methods=["DELETE"])
+@jwt_required
 def delete_admin_route(user_id):
     try:
         deleted = delete_admin(user_id)

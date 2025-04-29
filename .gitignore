@@ -1,18 +1,28 @@
-# Ignorar entorno virtual
+# Entornos virtuales
 env/
+venv/
 
-# Ignorar variables de entorno privadas
+# Variables privadas
 .env
-
 .env.*
 
+# Instancia / SQLite
 instance/
-# Ignorar archivos compilados de Python
+*.sqlite3
+*.db
+
+# Compilados de Python
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 
-# Ignorar archivos de log
+# Logs
 *.log
 
-*.sqlite3
+# Archivos SQL generados
 *.sql
+
+# IDEs y SO
+.vscode/
+.DS_Store

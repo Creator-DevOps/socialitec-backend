@@ -1,0 +1,24 @@
+meta {
+  name: UPDATE INSTITUTION
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{path}}/institutions/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "institution_name": "Hospital General León I",
+    "description": "Hospital de alta especialidad",
+    "phone": "4771234567",
+    "email": "hospital@leon.gob.mx",
+    "street": "Boulevard Insurgentes",
+    "number": "120",
+    "neighborhood": "Centro",
+    "postal_code": "37000"
+  }
+}

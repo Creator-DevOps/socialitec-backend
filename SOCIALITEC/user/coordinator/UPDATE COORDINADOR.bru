@@ -1,0 +1,19 @@
+meta {
+  name: UPDATE COORDINADOR
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{path}}/coordinators/27
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Ana Torres Valadez",
+    "email": "ana.torres@itl.edu.mx",
+    "departament": "Departamento de Ciencias Básicas"
+  }
+}

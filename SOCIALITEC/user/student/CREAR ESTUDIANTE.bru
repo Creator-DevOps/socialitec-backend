@@ -1,0 +1,24 @@
+meta {
+  name: CREAR ESTUDIANTE
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{path}}/students
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Carlos Eduardo Bustamante Servin",
+    "email": "21240210@gto.edu.mx",
+    "password": "password",
+    "control_number": "21240210",
+    "major": "Ingeniería en Sistemas Computacionales",
+    "semester": 8,
+    "credits": 190
+  }
+  
+}
