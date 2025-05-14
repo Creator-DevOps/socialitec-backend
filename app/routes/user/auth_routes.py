@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.services.user.auth_services import login_service
+from app.services.user.auth_services import login_service,change_password_service
 from app.utils.auth import jwt_required, get_current_user
 from app.models.user.user import User
 
@@ -59,3 +59,35 @@ def get_me():
 
     except Exception as e:
         return jsonify({"error": "Error al obtener usuario", "details": str(e)}), 500
+
+
+@auth_routes.route("/change-password", methods=["POST"])
+@jwt_required
+def change_password():
+    """
+    Body esperado: {
+      "current_password": "vieja123",
+      "new_password": "nueva456"
+    }
+    """
+    try:
+        data = request.get_json() or {}
+        current_password = data.get("current_password")
+        new_password = data.get("new_password")
+
+        if not current_password or not new_password:
+            return jsonify({"error": "Contraseña actual y nueva son requeridas."}), 400
+
+        # El ID del usuario lo obtenemos del token
+        user_id = get_current_user()
+
+        # Llamamos al servicio
+        result = change_password_service(user_id, current_password, new_password)
+        return jsonify({"message": result["message"]}), 200
+
+    except Exception as e:
+        # Si el mensaje proviene de nuestra lógica, lo devolvemos; 
+        # de lo contrario, mensaje genérico de error
+        detail = str(e)
+        status = 400 if "incorrecta" in detail or "no encontrado" in detail else 500
+        return jsonify({"error": "Error al cambiar contraseña", "details": detail}), status

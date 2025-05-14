@@ -1,0 +1,23 @@
+meta {
+  name: CREAR REQUEST
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{path}}/requests
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "student_id": 4,
+    "program_id": 1,
+    "acceptance_status": 0,
+    "progress_status": 0,
+    "completed_hours": 0,
+    "coordinator_id": 2,
+    "feedback": "Pendiente"
+  }
+}

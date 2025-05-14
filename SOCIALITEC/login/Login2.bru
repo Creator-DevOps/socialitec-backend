@@ -1,0 +1,18 @@
+meta {
+  name: Login2
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://52.54.127.38:5000/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "21240210@gto.edu.mx",
+    "password": "password"
+  }
+}

@@ -16,5 +16,4 @@ class Student(db.Model):
 
     # Relaciones
     user = relationship('User', back_populates='student')
-    report = relationship('Report', back_populates='student')
     request = relationship('Request', back_populates='student')

@@ -4,10 +4,9 @@ from datetime import datetime
 
 class Report(db.Model):
     __tablename__ = 'report'
-
     document_id = db.Column(db.Integer, db.ForeignKey('document.document_id'), primary_key=True)
+    item_id = db.Column(db.Integer,db.ForeignKey('report_cycle_item.item_id'),nullable=False)
     request_id = db.Column(db.Integer, db.ForeignKey('request.request_id'))
-    student_id = db.Column(db.Integer, db.ForeignKey('student.user_id'))
     coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinator.user_id'))
     report_number = db.Column(db.SmallInteger, nullable=False)
     status = db.Column(db.SmallInteger, default=0)
@@ -20,4 +19,4 @@ class Report(db.Model):
     coordinator = relationship("Coordinator", back_populates="report")
     document = relationship("Document", back_populates="report")
     request = relationship("Request", back_populates="report")
-    student = relationship("Student", back_populates="report")
+    cycle_item    = relationship("ReportCycleItem",back_populates="submissions",cascade="none")

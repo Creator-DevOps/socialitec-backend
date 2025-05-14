@@ -6,6 +6,7 @@ class Document(db.Model):
     __tablename__ = 'document'
 
     document_id = db.Column(db.Integer, primary_key=True)
+    document_name = db.Column(db.String(255))
     document_type = db.Column(db.SmallInteger)  # 0 = report, 1 = template, 2 = release_letter
     file_path = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

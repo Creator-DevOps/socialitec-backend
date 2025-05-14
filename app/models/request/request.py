@@ -14,6 +14,7 @@ class Request(db.Model):
     completed_hours = db.Column(db.Integer, default=0)
     coordinator_id = db.Column(db.Integer, db.ForeignKey('coordinator.user_id'))
     feedback = db.Column(db.String(255))
+    cycle_id = db.Column(db.Integer, db.ForeignKey('report_cycle.cycle_id'), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at = db.Column(db.DateTime)
@@ -24,4 +25,5 @@ class Request(db.Model):
     coordinator = relationship("Coordinator", back_populates="request")
     release_letter = relationship("ReleaseLetter", back_populates="request")
     report = relationship("Report", back_populates="request")
+    cycle             = relationship("ReportCycle", back_populates="requests")
 

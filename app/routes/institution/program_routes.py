@@ -6,7 +6,8 @@ from app.services.institution.program_services import (
     create_program,
     update_program,
     delete_program,
-    get_programs_paginated
+    get_programs_paginated,
+    get_programs_by_institution
 )
 
 program_routes = Blueprint("program", __name__)
@@ -48,6 +49,27 @@ def get_program(program_id):
         return jsonify({"message": "Programa encontrado", "data": program}), 200
     except Exception as e:
         return jsonify({"error": "Error al obtener programa", "details": str(e)}), 500
+    
+#Programas en una institución
+@program_routes.route("/institution/<int:institution_id>", methods=["GET"])
+@jwt_required
+def get_programs_in_institution(institution_id):
+    try:
+        items = get_programs_by_institution(institution_id)
+        result = {
+            "items": items,
+            "total": len(items),
+            "page": 1,
+            "limit": len(items),
+            "pages": 1
+        }
+        return jsonify(result), 200
+
+    except Exception as e:
+        msg = str(e)
+        if "no encontrada" in msg.lower():
+            return jsonify({"message": msg}), 404
+        return jsonify({"error": "No se pudieron obtener los programas", "details": msg}), 500
 
 # Crear programa
 @program_routes.route("/", methods=["POST"])

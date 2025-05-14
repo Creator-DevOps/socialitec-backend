@@ -1,0 +1,21 @@
+meta {
+  name: PUT ITEM CICLO
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{path}}/report_cycles/6/items/7
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+   "title": "Segundo Avance"}
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\warning.svg)
+  description: Estadiohfs de brasidac, pLANTILLA 2
+}

@@ -55,6 +55,21 @@ def get_program_by_id(program_id):
     program = Program.query.filter_by(program_id=program_id, deleted_at=None).first()
     return format_program(program) if program else None
 
+#Programas de una institución
+def get_programs_by_institution(institution_id):
+    institution = Institution.query.filter_by(
+        institution_id=institution_id,
+        deleted_at=None
+    ).first()
+    if not institution:
+        raise Exception("Institución no encontrada.")
+
+    programs = Program.query.filter_by(
+        institution_id=institution_id,
+        deleted_at=None
+    ).all()
+    return [format_program(p) for p in programs]
+
 # Crear programa
 def create_program(data):
     try:

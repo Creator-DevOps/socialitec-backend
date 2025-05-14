@@ -1,0 +1,19 @@
+meta {
+  name: POST LETTER
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{path}}/letters
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\alpha-x-circle.pdf)
+  document_name: Carta de liberación
+  request_id: 2
+  coordinator_id: 2
+  : 
+}
