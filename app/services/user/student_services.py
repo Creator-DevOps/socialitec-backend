@@ -112,10 +112,10 @@ def update_student(user_id, data):
         return None
 
     try:
-        new_email = data.get("email")
+        new_email = data.get("email", "").lower()
         new_control = data.get("control_number")
 
-        if new_email and new_email != user.institutional_email:
+        if new_email and new_email != user.institutional_email.lower():
             existing_user = User.query.filter(
                 User.institutional_email == new_email,
                 User.user_id != user_id,

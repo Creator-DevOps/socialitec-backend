@@ -1,0 +1,22 @@
+meta {
+  name: POST REPORTS
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{path}}/reports
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\alpha-x-circle32 (6).pdf)
+  coordinator_id: 2
+  request_id: 3
+  report_number: 2
+  document_name: Primer avance
+  feedback: Retroalimentación
+  status: 0
+  item_id: 1
+}

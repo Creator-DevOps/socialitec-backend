@@ -25,6 +25,10 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
+    @app.after_request
+    def expose_headers(response):
+        response.headers.add("Access-Control-Expose-Headers", "Content-Disposition")
+        return response
     cors.init_app(app)
 
     # Register blueprints endpoints

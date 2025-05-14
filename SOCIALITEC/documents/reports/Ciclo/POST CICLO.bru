@@ -1,0 +1,29 @@
+meta {
+  name: POST CICLO
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{path}}/report_cycles
+  body: json
+  auth: inherit
+}
+
+body:json {
+  { "name": "Ciclo Primer Semestre 2026","folder_name": "ene-jun-2026",
+   "start_date": "2025-01-15",
+   "end_date": "2025-06-15"}
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\alpha-x-circle.pdf)
+  description: Reporte 1
+  coordinator_id: 3
+  request_id: 6
+  student_id: 7
+  report_number: 1
+  document_name: Mi documento
+  feedback: Retroalimentación
+  status:  @contentType(0)
+}

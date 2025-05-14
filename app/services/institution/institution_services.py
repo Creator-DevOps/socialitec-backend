@@ -138,15 +138,39 @@ def update_institution(institution_id, data):
 
 # Eliminar institución
 def delete_institution(institution_id):
-    institution = Institution.query.filter_by(institution_id=institution_id, deleted_at=None).first()
+    inst = Institution.query.filter_by(
+        institution_id=institution_id,
+        deleted_at=None
+    ).first()
 
-    if not institution:
+    if not inst:
         return False
 
     try:
-        institution.deleted_at = datetime.utcnow()
+        #programas hijos de la institución
+        for prog in inst.program:   
+            if prog.deleted_at is None:
+                prog.deleted_at = datetime.utcnow()
+
+        # 2) institución
+        inst.deleted_at = datetime.utcnow()
+
         db.session.commit()
         return True
+
     except Exception as e:
         db.session.rollback()
-        raise Exception(f"Error al eliminar institución: {str(e)}")
+        raise Exception(f"Error al eliminar institución y sus programas: {str(e)}")
+    
+# def delete_institution(institution_id):
+#     institution = Institution.query.filter_by(institution_id=institution_id, deleted_at=None).first()
+#     if not institution:
+#         return False
+
+#     try:
+#         institution.deleted_at = datetime.utcnow()
+#         db.session.commit()
+#         return True
+#     except Exception as e:
+#         db.session.rollback()
+#         raise Exception(f"Error al eliminar institución: {str(e)}")

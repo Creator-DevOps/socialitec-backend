@@ -1,0 +1,16 @@
+meta {
+  name: GET REQUESTS PAGINATED
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{path}}/requests?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}

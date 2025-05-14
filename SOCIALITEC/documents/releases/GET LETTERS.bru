@@ -1,0 +1,17 @@
+meta {
+  name: GET LETTERS
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{path}}/letters?page=1&limit=20&search=mau
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 20
+  search: mau
+}

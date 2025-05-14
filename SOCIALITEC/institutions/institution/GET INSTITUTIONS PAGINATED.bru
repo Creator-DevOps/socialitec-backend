@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: {{path}}/institutions/?page=1&limit=10
+  url: {{path}}/institutions/?page=1&limit=10&query=ciatec
   body: none
   auth: inherit
 }
@@ -13,4 +13,5 @@ get {
 params:query {
   page: 1
   limit: 10
+  query: ciatec
 }

@@ -1,0 +1,16 @@
+meta {
+  name: PUT LETTER
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{path}}/letters/2
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\warning.svg)
+  description: Estadiohfs de brasidac, pLANTILLA 2
+}

@@ -1,0 +1,15 @@
+meta {
+  name: PUT REPORT
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{path}}/reports/6
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  report_number: 3
+}

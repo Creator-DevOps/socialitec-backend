@@ -1,0 +1,16 @@
+meta {
+  name: GET CICLOS
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{path}}/report_cycles?page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 1
+  limit: 10
+}

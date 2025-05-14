@@ -1,0 +1,18 @@
+meta {
+  name: POST TEMPLATE
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{path}}/templates
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  description: Estadios de brasil
+  file: @file(C:\Users\busta\Downloads\estadios_brasil_inv.xlsx)
+  coordinator_id: 3
+  document_name: Titulo 11
+}

@@ -1,0 +1,18 @@
+meta {
+  name: UPDATE REQUEST
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{path}}/requests/3
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "cycle_id": 1
+  }
+  
+}

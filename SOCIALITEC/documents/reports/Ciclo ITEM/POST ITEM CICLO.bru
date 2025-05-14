@@ -1,0 +1,30 @@
+meta {
+  name: POST ITEM CICLO
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{path}}/report_cycles/2/items
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {"report_number":3,
+   "title": "Tercer Avance",
+   "start_date": "2025-10-30",
+   "end_date": "2025-11-30"}
+}
+
+body:multipart-form {
+  file: @file(C:\Users\busta\Downloads\alpha-x-circle.pdf)
+  description: Reporte 1
+  coordinator_id: 3
+  request_id: 6
+  student_id: 7
+  report_number: 1
+  document_name: Mi documento
+  feedback: Retroalimentación
+  status:  @contentType(0)
+}
