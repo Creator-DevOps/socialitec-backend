@@ -3,7 +3,7 @@ from app.extensions import db
 from datetime import datetime
 from sqlalchemy import or_
 
-# Formatear institución
+# Formato institución
 def format_institution(institution):
     if not institution:
         return None

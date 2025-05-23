@@ -22,7 +22,7 @@ def login():
     except Exception as e:
         return jsonify({"error": "Error al iniciar sesión", "details": str(e)}), 401
 
-# Logout (Frontend eliminará token, aquí solo es opcional mostrar mensaje)
+# Logout 
 @auth_routes.route("/logout", methods=["POST"])
 @jwt_required
 def logout():

@@ -2,6 +2,7 @@ from app import db
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
+#Modelo Institution
 class Institution(db.Model):
     __tablename__ = 'institution'
 

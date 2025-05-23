@@ -94,7 +94,6 @@ def update_admin_route(user_id):
 
 
 #Eliminar administrador
-
 @admin_routes.route("/<int:user_id>", methods=["DELETE"])
 @jwt_required
 def delete_admin_route(user_id):
