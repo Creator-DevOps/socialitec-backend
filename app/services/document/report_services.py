@@ -20,6 +20,7 @@ from datetime import datetime
 from urllib.parse import urlparse
 from flask import abort
 from app.extensions import db, s3_client
+from app.utils.email_utils import send_update_email
 
 BUCKET     = os.getenv("S3_BUCKET_NAME")
 EXPIRES_IN = 3600  # segundos
@@ -169,6 +170,18 @@ def update_report(
 
     report.updated_at = datetime.utcnow()
     db.session.commit()
+
+    doc = get_document_by_id(report.document_id)
+    req = get_request_by_id(report.request_id)
+    student_email = req["student"]["email"]
+    print(student_email)
+    send_update_email(
+       to_email=student_email,
+       report_name=doc.get("document_name"),
+       report_number=report.report_number,
+       feedback=report.feedback,
+       updated_at=report.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+   )
 
     # 5) Reemplazo de archivo en S3 si se envía uno nuevo
     if file or document_name is not None:

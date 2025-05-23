@@ -10,7 +10,6 @@ def upload_file_to_s3(file: FileStorage, key_prefix: str = "documents/") -> str:
     """
     filename = file.filename
     key = f"{key_prefix}{filename}"
-    # Subimos el objeto SIN pasar ACL, ya que el bucket no las soporta
     s3_client.upload_fileobj(
         file,
         BUCKET,

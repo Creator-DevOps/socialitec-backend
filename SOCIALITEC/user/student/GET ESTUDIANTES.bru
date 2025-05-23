@@ -5,7 +5,11 @@ meta {
 }
 
 get {
-  url: {{path}}/students/
+  url: {{path}}/students?query=juan
   body: none
   auth: inherit
+}
+
+params:query {
+  query: juan
 }
